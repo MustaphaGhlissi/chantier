@@ -1,0 +1,7 @@
+<form method="post" action="{{ path('pointage_delete', {'id': pointage.id}) }}" 
+	onsubmit="return confirm('Voulez-vous vraiment supprimer ce pointage ?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ pointage.id) }}">
+    <button class="btn btn-danger btn-sm">
+    	<i class='fa fa-trash'></i> Supprimer
+	</button>
+</form>

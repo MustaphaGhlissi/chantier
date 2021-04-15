@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pointage{% endblock %}
+
+{% block body %}
+    <h1>Pointage</h1>
+
+    <div class='text-right'>
+        <ul class='list-unstyled d-inline-flex flex-row align-items-center'>
+            <li class='mx-1'>
+                <a href="{{ path('pointage_index') }}">
+                    <i class='fa fa-arrow-left'></i> Retour</a>
+            </li>
+            <li class='mx-1'>
+                <a href="{{ path('pointage_edit', {'id': pointage.id}) }}" class='btn btn-success btn-sm'>
+                   <i class='fa fa-edit'></i> Modifier
+                </a>
+            </li>
+            <li class='ml-1'>
+                {{ include('pointage/_delete_form.html.twig') }}
+            </li>
+        </ul>
+    </div>
+
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ pointage.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ pointage.date ? pointage.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Durée</th>
+                <td>{{ pointage.duree }}</td>
+            </tr>
+            <tr>
+                <th>Utilisateur</th>
+                <td>{{ pointage.utilisateur.prenom|capitalize ~ ' ' ~ pointage.utilisateur.nom|upper }}</td>
+            </tr>
+            <tr>
+                <th>Chantier</th>
+                <td>{{ pointage.chantier.nom|capitalize }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Chantier index{% endblock %}
+
+{% block body %}
+    <h1>Chantiers</h1>
+
+    <div class='text-right mb-3'>
+        <a href="{{ path('chantier_new') }}" class='btn btn-sm btn-primary'>
+            <i class='fa fa-plus-circle'></i> Ajouter
+        </a>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Adresse</th>
+                <th>Date début</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for chantier in chantiers %}
+            <tr>
+                <td>{{ chantier.id }}</td>
+                <td>{{ chantier.nom }}</td>
+                <td>{{ chantier.adresse }}</td>
+                <td>{{ chantier.dateDebut ? chantier.dateDebut|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('chantier_show', {'id': chantier.id}) }}" class='btn btn-secondary btn-sm'>
+                        <i class='fa fa-eye'></i>
+                    </a>
+                    <a href="{{ path('chantier_edit', {'id': chantier.id}) }}" class='btn btn-success btn-sm'>
+                        <i class='fa fa-edit'></i>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucun chantier</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

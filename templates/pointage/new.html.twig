@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Pointage{% endblock %}
+
+{% block body %}
+    <h1>Create new Pointage</h1>
+
+
+    <div class="text-right">
+    <a href="{{ path('pointage_index') }}">Retour à la liste</a>
+    </div>
+    {{ include('pointage/_form.html.twig') }}
+
+{% endblock %}

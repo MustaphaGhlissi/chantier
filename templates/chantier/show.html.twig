@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Chantier{% endblock %}
+
+{% block body %}
+
+    <h1>{{ chantier.nom|upper }}</h1>
+
+    <div class='text-right'>
+        <ul class='list-unstyled d-inline-flex flex-row align-items-center'>
+            <li class='mx-1'>
+                <a href="{{ path('chantier_index') }}">
+                    <i class='fa fa-arrow-left'></i> Retour</a>
+            </li>
+            <li class='mx-1'>
+                <a href="{{ path('chantier_edit', {'id': chantier.id}) }}" class='btn btn-success btn-sm'>
+                   <i class='fa fa-edit'></i> Modifier
+                </a>
+            </li>
+            <li class='ml-1'>
+                {{ include('chantier/_delete_form.html.twig') }}
+            </li>
+        </ul>
+    </div>
+
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ chantier.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ chantier.nom }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ chantier.adresse }}</td>
+            </tr>
+            <tr>
+                <th>DateDebut</th>
+                <td>{{ chantier.dateDebut ? chantier.dateDebut|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

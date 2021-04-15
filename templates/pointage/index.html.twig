@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pointage index{% endblock %}
+
+{% block body %}
+    <h1>Pointages</h1>
+    <div class='text-right mb-3'>
+        <a href="{{ path('pointage_new') }}" class='btn btn-sm btn-primary'>
+            <i class='fa fa-plus-circle'></i> Ajouter
+        </a>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Durée</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pointage in pointages %}
+            <tr>
+                <td>{{ pointage.id }}</td>
+                <td>{{ pointage.date ? pointage.date|date('Y-m-d') : '' }}</td>
+                <td>{{ pointage.duree }}</td>
+                <td>
+                    <a href="{{ path('pointage_show', {'id': pointage.id}) }}" class='btn btn-secondary btn-sm'>
+                        <i class='fa fa-eye'></i>
+                    </a>
+                    <a href="{{ path('pointage_edit', {'id': pointage.id}) }}" class='btn btn-success btn-sm'>
+                        <i class='fa fa-edit'></i>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucun pointage</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

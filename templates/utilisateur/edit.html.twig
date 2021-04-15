@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Utilisateur{% endblock %}
+
+{% block body %}
+    <h1>Mise à jour</h1>
+
+	<div class='text-right'>
+        <ul class='list-unstyled d-inline-flex flex-row align-items-center'>
+            <li class='mx-1'>
+                <a href="{{ path('utilisateur_index') }}">
+                    <i class='fa fa-arrow-left'></i> Retour</a>
+            </li>
+            <li class='ml-1'>
+                {{ include('utilisateur/_delete_form.html.twig') }}
+            </li>
+        </ul>
+    </div>
+    {{ include('utilisateur/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+{% endblock %}

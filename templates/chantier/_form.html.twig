@@ -1,0 +1,16 @@
+{{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
+    <div class='row'>
+    	<div class='col-md-6'>
+    		{{ form_row(form.nom) }}
+	    </div>
+	    <div class='col-md-6'>
+	    	{{ form_row(form.adresse) }}
+	    </div>
+	    <div class='col-md-12'>
+	    	{{ form_row(form.dateDebut) }}
+	    </div>
+    </div>
+    <div class='text-right'>
+    	<button class="btn btn-primary btn-sm">{{ button_label|default('Enregistrer') }}</button>
+    </div>
+{{ form_end(form) }}
