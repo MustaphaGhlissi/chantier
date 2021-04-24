@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Pointage;
 use App\Form\PointageType;
 use App\Repository\PointageRepository;
+use Carbon\Carbon;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -44,6 +45,20 @@ class PointageController extends AbstractController
 
             if($alreadyPointed instanceof Pointage) {
                 $this->addFlash('danger', 'Cet utilisateur a déjà pointé aujourd\'hui');
+                return $this->redirect($request->headers->get('referer'));
+            }
+
+            $weekStart = Carbon::today()->modify('this week');
+            $weekEnd = Carbon::today()->modify('this week +6 days');
+            $dureePointee = $pointageRepository->getPointageByWeek([
+                'utilisateur' => $pointage->getUtilisateur()->getId(),
+                'weekStartDate' => $weekStart->format('Y-m-d'),
+                'weekEndDate' => $weekEnd->format('Y-m-d'),
+            ]);
+
+            if($dureePointee && $dureePointee + $pointage->getDuree() > 35)
+            {
+                $this->addFlash('danger', 'Votre pointage ne peut pas dépasser 35 heures pour une semaine.');
                 return $this->redirect($request->headers->get('referer'));
             }
 

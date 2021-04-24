@@ -45,8 +45,19 @@ class PointageRepository extends ServiceEntityRepository
             ->andWhere('p.date = :date')
             ->setParameters($params)
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getOneOrNullResult();
+    }
+
+    public function getPointageByWeek($params)
+    {
+        return $this->createQueryBuilder('p')
+            ->select('SUM(p.duree)')
+            ->andWhere('p.utilisateur = :utilisateur')
+            ->andWhere('p.date >= :weekStartDate')
+            ->andWhere('p.date <= :weekEndDate')
+            ->setParameters($params)
+            ->getQuery()
+            ->getSingleScalarResult();
     }
     
 }
