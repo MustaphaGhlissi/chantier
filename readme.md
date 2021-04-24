@@ -33,6 +33,7 @@ Enfin pour créer la base lancer cette commande:
 Ouvrir le terminal et taper
 
 > symfony server:start -d 
+
 Copier l'adresse affichée dans le terminal
 
 > yarn encore dev 
